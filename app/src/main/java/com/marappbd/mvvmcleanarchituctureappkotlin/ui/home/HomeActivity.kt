@@ -1,21 +1,14 @@
 package com.marappbd.mvvmcleanarchituctureappkotlin.ui.home
 
 import android.annotation.SuppressLint
+import android.content.Intent
 import android.os.Bundle
-import android.view.LayoutInflater
-import android.widget.Toast
-import androidx.activity.enableEdgeToEdge
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.ViewCompat
-import androidx.core.view.WindowInsetsCompat
-import androidx.lifecycle.ViewModel
-import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView.LayoutManager
-import com.marappbd.mvvmcleanarchituctureappkotlin.R
 import com.marappbd.mvvmcleanarchituctureappkotlin.databinding.ActivityHomeBinding
 import com.marappbd.mvvmcleanarchituctureappkotlin.model.ProductModel
+import com.marappbd.mvvmcleanarchituctureappkotlin.ui.cart.CartActivity
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -47,11 +40,11 @@ class HomeActivity : AppCompatActivity() {
         }
     }
 
-    @SuppressLint("NotifyDataSetChanged")
-    private fun onItemClick(e: ProductModel) {
-        list.add(e)
-        binding.recyclerview.adapter?.notifyDataSetChanged()
-        Toast.makeText(this, "Lenght: ${list.size}", Toast.LENGTH_SHORT).show()
 
+    private fun onItemClick(e: ProductModel) {
+        val intent = Intent(this, CartActivity::class.java)
+        intent.putExtra("id", e.id)
+        intent.putExtra("title", e.title)
+        startActivity(intent)
     }
 }
