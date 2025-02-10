@@ -23,7 +23,6 @@ class HomeActivity : AppCompatActivity() {
         setContentView(binding.root)
         viewModel.getProductData()
         setupData()
-
         binding.recyclerview.layoutManager = LinearLayoutManager(this)
         binding.recyclerview.adapter = HomeAdapter(list) { e ->
             onItemClick(e)
